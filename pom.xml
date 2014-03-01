@@ -11,7 +11,7 @@
     <groupId>org.webjars</groupId>
     <artifactId>pure</artifactId>
     <name>Pure</name>
-    <version>0.3.1-SNAPSHOT</version>
+    <version>0.4.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>WebJar for Pure</description>
     <url>http://webjars.org</url>
@@ -42,7 +42,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>0.3.0</upstreamVersion>
+        <upstreamVersion>0.4.2</upstreamVersion>
         <sourceUrl>https://github.com/yui/pure/releases/download</sourceUrl>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
     </properties>
@@ -59,8 +59,8 @@
                         <goals><goal>download-single</goal></goals>
                         <configuration>
                             <url>${sourceUrl}</url>
-                            <fromFile>v${upstreamVersion}/pure-${upstreamVersion}.zip</fromFile>
-                            <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
+                            <fromFile>v${upstreamVersion}/pure-${upstreamVersion}.tar.gz</fromFile>
+                            <toFile>${project.build.directory}/${project.artifactId}.tar.gz</toFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -76,7 +76,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzip archive" />
-                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
+                                <untar compression="gzip" src="${project.build.directory}/${project.artifactId}.tar.gz" dest="${project.build.directory}" />
                                 <echo message="moving resources" />
                                 <move todir="${destDir}">
                                     <fileset dir="${project.build.directory}/pure/${upstreamVersion}" includes="*.css" />
