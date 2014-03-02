@@ -11,7 +11,7 @@
     <groupId>org.webjars</groupId>
     <artifactId>pure</artifactId>
     <name>Pure</name>
-    <version>0.4.2</version>
+    <version>0.4.3-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>WebJar for Pure</description>
     <url>http://webjars.org</url>
@@ -36,7 +36,7 @@
         <url>http://github.com/webjars/pure</url>
         <connection>scm:git:https://github.com/webjars/pure.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/pure.git</developerConnection>
-        <tag>pure-0.4.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
 
