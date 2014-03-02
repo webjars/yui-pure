@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-
+    
     <groupId>org.webjars</groupId>
     <artifactId>pure</artifactId>
     <name>Pure</name>
-    <version>2.84-SNAPSHOT</version>
+    <version>0.4.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>WebJar for Pure</description>
     <url>http://webjars.org</url>
@@ -19,7 +19,7 @@
     <licenses>
         <license>
             <name>BSD</name>
-            <url>https://github.com/pure/pure/blob/master/README.md</url>
+            <url>http://yuilibrary.com/license/</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -29,11 +29,6 @@
             <id>da-z</id>
             <name>Andrei Zinca</name>
             <email>andrei.zinca@gmail.com</email>
-        </developer>
-        <developer>
-            <id>cowwoc</id>
-            <name>Gili Tzabari</name>
-            <email>cowwoc@bbs.darktech.org</email>
         </developer>
     </developers>
 
@@ -47,9 +42,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.version>2.83</upstream.version>
-        <upstream.url>https://raw.github.com/pure/pure/v${upstream.version}/</upstream.url>
-        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
+        <upstreamVersion>0.4.2</upstreamVersion>
+        <sourceUrl>https://github.com/yui/pure/releases/download</sourceUrl>
+        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
     </properties>
 
     <build>
@@ -60,27 +55,33 @@
                 <version>1.0-beta-4</version>
                 <executions>
                     <execution>
-                        <id>download-js</id>
                         <phase>process-resources</phase>
-                        <goals>
-                            <goal>download-single</goal>
-                        </goals>
+                        <goals><goal>download-single</goal></goals>
                         <configuration>
-                            <url>${upstream.url}</url>
-                            <fromFile>libs/pure.js</fromFile>
-                            <toFile>${destDir}/pure.js</toFile>
+                            <url>${sourceUrl}</url>
+                            <fromFile>v${upstreamVersion}/pure-${upstreamVersion}.tar.gz</fromFile>
+                            <toFile>${project.build.directory}/${project.artifactId}.tar.gz</toFile>
                         </configuration>
                     </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
                     <execution>
-                        <id>download-js-min</id>
                         <phase>process-resources</phase>
-                        <goals>
-                            <goal>download-single</goal>
-                        </goals>
+                        <goals><goal>run</goal></goals>
                         <configuration>
-                            <url>${upstream.url}</url>
-                            <fromFile>libs/pure.min.js</fromFile>
-                            <toFile>${destDir}/pure.min.js</toFile>
+                            <target>
+                                <echo message="unzip archive" />
+                                <untar compression="gzip" src="${project.build.directory}/${project.artifactId}.tar.gz" dest="${project.build.directory}" />
+                                <echo message="moving resources" />
+                                <move todir="${destDir}">
+                                    <fileset dir="${project.build.directory}/pure/${upstreamVersion}" includes="*.css" />
+                                </move>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
@@ -88,8 +89,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.4.2</version>
+                <version>2.3.2</version>
             </plugin>
         </plugins>
     </build>
+
 </project>
