@@ -9,11 +9,11 @@
     </parent>
     
     <groupId>org.webjars</groupId>
-    <artifactId>pure</artifactId>
-    <name>Pure</name>
-    <version>0.4.3-SNAPSHOT</version>
+    <artifactId>yui-pure</artifactId>
+    <name>YUI Pure</name>
+    <version>0.4.2-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <description>WebJar for Pure</description>
+    <description>WebJar for YUI Pure</description>
     <url>http://webjars.org</url>
 
     <licenses>
@@ -33,9 +33,9 @@
     </developers>
 
     <scm>
-        <url>http://github.com/webjars/pure</url>
-        <connection>scm:git:https://github.com/webjars/pure.git</connection>
-        <developerConnection>scm:git:https://github.com/webjars/pure.git</developerConnection>
+        <url>http://github.com/webjars/yui-pure</url>
+        <connection>scm:git:https://github.com/webjars/yui-pure.git</connection>
+        <developerConnection>scm:git:https://github.com/webjars/yui-pure.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
@@ -89,14 +89,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.4.2</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-provider-gitexe</artifactId>
-                        <version>1.9</version>
-                    </dependency>
-                </dependencies>
+                <version>2.5</version>
             </plugin>
 
             <plugin>
