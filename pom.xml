@@ -11,7 +11,7 @@
     <groupId>org.webjars</groupId>
     <artifactId>yui-pure</artifactId>
     <name>YUI Pure</name>
-    <version>0.4.2-SNAPSHOT</version>
+    <version>0.4.2</version>
     <packaging>jar</packaging>
     <description>WebJar for YUI Pure</description>
     <url>http://webjars.org</url>
@@ -36,7 +36,7 @@
         <url>http://github.com/webjars/yui-pure</url>
         <connection>scm:git:https://github.com/webjars/yui-pure.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/yui-pure.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>yui-pure-0.4.2</tag>
     </scm>
 
 
